@@ -1,0 +1,26 @@
+<% if flash[:notice] %>
+        <div class = "flash">
+            <%= flash[:notice] %>
+        </div>
+    <% end %>
+    
+<h1>User info</h1>
+<%= form_for(@user) do |f| %>
+        <% if @user.errors.any? %>
+                <ul class = "error">
+                    <% @user.errors.full_messages.each do |message| %>
+                    <li><%= message %>error</li>
+        <% end %>
+                </ul>
+    <% end %>
+    
+    <div class="form-group has-icon">
+        <p>Name</p>
+        <%= f.text_field :name %>
+        <p>Image</p>
+        <%= f.attachment_field :profile_image %>
+        <p>Introduction</p>
+        <%= f.text_area :introduction, autofocus: true%>
+    </div>                  
+    <%= f.submit "Update User" %>
+<% end %>

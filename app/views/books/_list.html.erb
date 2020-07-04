@@ -1,0 +1,62 @@
+
+
+<div class="row">
+    <h1>User info</h1>
+</div>
+
+<div class="row">
+    <%= attachment_image_tag @book.user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+</div>
+
+<div class="row">
+    <table class="table">
+        <tr>
+            <th>name</th>
+            <th><%= current_user.name %></th>
+        </tr>
+        <tr>
+            <th>introduction</th>
+            <th><%= current_user.introduction %></th>
+        </tr>
+    </tbody>
+    </table>
+</div>
+
+<div class="row border">
+    <% if @user != current_user && controller.action_name == "show" %>
+    <% else %>
+        <%= link_to "",  edit_user_path(current_user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+    <% end %>
+</div>
+
+<div class="row">
+    <h1>New book</h1>
+</div>
+
+<div class="row">
+    <%= form_for(@book, url: books_path) do |f| %>
+        <% if @book.errors.any? %>
+                <ul class = "error">
+                    <% @book.errors.full_messages.each do |message| %>
+                    <li><%= message %>error</li>
+        <% end %>
+                </ul>
+    <% end %>
+
+<br>
+
+
+<div class="row">                 
+    <p>Title</p>
+    <%= f.text_field :title %>
+</div>
+
+
+<div class="row">
+    <p>Opinion</p>
+    <%= f.text_area :body %>
+</div>
+
+<%= f.submit "Create Book" %>
+<% end %>
+</div>
