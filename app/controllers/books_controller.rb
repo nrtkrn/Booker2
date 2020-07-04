@@ -49,7 +49,7 @@ private
     end
     def user_check
         @book = Book.find(params[:id])
-        if @book.user_id ！= current_user.id
+        if @book.user_id != current_user.id
             redirect_to books_path
         end
     end
